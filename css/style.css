@@ -17,10 +17,29 @@ img {
   display: flex;
 }
 
+.slide:hover {
+  will-change: transform;
+}
+
+.slide:not(:hover) {
+  will-change: auto;
+}
+
 .slide li {
   list-style: none;
   flex-shrink: 0;
   width: 80vw;
   max-width: 800px;
   margin: 0 20px;
+
+  border-radius: 4px;
+  overflow: hidden;
+  opacity: .8;
+  transform: scale(.8);
+  transition: .4s;
+}
+
+.slide li.ativo {
+  opacity: 1;
+  transform: scale(1);
 }
