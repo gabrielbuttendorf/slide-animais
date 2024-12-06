@@ -1,6 +1,6 @@
 import debounce from './debounce.js';
 
-export default class Slide {
+export class Slide {
   constructor(slide, wrapper) {
     this.slide = document.querySelector(slide);
     this.wrapper = document.querySelector(wrapper);
@@ -119,7 +119,7 @@ export default class Slide {
     this.slideArray[this.index.active].element.classList.add(this.activeClass);
   }
 
-  addEvents() {
+  addSlideEvents() {
     this.wrapper.addEventListener('mousedown', this.onStart);
     this.wrapper.addEventListener('touchstart', this.onStart);
     this.wrapper.addEventListener('mouseup', this.onEnd);
@@ -131,11 +131,12 @@ export default class Slide {
     this.onStart = this.onStart.bind(this);
     this.onMove = this.onMove.bind(this);
     this.onEnd = this.onEnd.bind(this);
+    this.activePrevSlide = this.activePrevSlide.bind(this);
+    this.activeNextSlide = this.activeNextSlide.bind(this);
     this.onResize = debounce(this.onResize.bind(this), 200);
   }
 
   onResize() {
-    console.log('resize')
     setTimeout(() => {
       this.slidesConfig();
       this.changeSlide(this.index.active);
@@ -145,10 +146,24 @@ export default class Slide {
   init() {
     this.transition(true);
     this.bindEvents();
-    this.addEvents();
+    this.addSlideEvents();
     this.updatePosition();
     this.slidesConfig();
+    this.changeSlide(1);
 
     return this;
+  }
+}
+
+export class NavSlide extends Slide {
+  addArrow(prev, next) {
+    this.prevButton = document.querySelector(prev);
+    this.nextButton = document.querySelector(next);
+    this.addNavSlideEvents();
+  }
+
+  addNavSlideEvents() {
+    this.prevButton.addEventListener('click', this.activePrevSlide);
+    this.nextButton.addEventListener('click', this.activeNextSlide);
   }
 }
