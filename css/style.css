@@ -2,6 +2,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  list-style: none;
 }
 
 .slide-wrapper {
@@ -26,7 +27,6 @@ img {
 }
 
 .slide li {
-  list-style: none;
   flex-shrink: 0;
   width: 80vw;
   max-width: 800px;
@@ -43,3 +43,24 @@ img {
   opacity: 1;
   transform: scale(1);
 }
+
+[data-control="slide"] {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+[data-control="slide"] li a {
+  display: block;
+  width: 14px;
+  height: 14px;
+  background: #a0b3c4;
+  border-radius: 50%;
+  overflow: hidden;
+  text-indent: -1000px;
+}
+
+[data-control="slide"] li.ativo a, [data-control="slide"] li a:hover {
+  background: #677a8a;
+}  
