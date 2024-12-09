@@ -7,6 +7,11 @@
 
 .slide-wrapper {
   overflow: hidden;
+  position: relative;
+  padding-bottom: 10vh;
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-top: 100px;
 }
 
 img {
@@ -63,4 +68,43 @@ img {
 
 [data-control="slide"] li.ativo a, [data-control="slide"] li a:hover {
   background: #677a8a;
-}  
+}
+
+.btn {
+  position: absolute;
+  bottom: 20px;
+
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 100%;
+  margin: 0 20%;
+  border: 1px solid #a7b5c0;
+  cursor: pointer;
+  transition: .1s;
+}
+
+.prev {
+  left: 0;
+  text-indent: -1000px;
+  background: url('../img/arrow-left.svg') no-repeat center;
+}
+
+.next {
+  right: 0;
+  text-indent: 1000px;
+  background: url('../img/arrow-right.svg') no-repeat center;
+}
+
+.btn:hover {
+  transform: scale(1.1);
+}
+
+.btn:active {
+  transform: scale(1);
+}
+
+@media (max-width: 650px) {
+  .btn {
+    display: none;
+  }
+}
